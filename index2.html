@@ -1,303 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
+<head>
+<meta charset="utf-8">
+<title>个人博客</title>
+<meta http-equiv="X-UA-Compatible" content="edge,chrome=1"  />
+<meta http-equiv="Cache-Control" content="no-siteapp" /> <!-- 避免转码 -->
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
 <meta name="viewport"   content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"  />
-    <title>shop</title>
-  </head>
-  <body>
-  	
-  <a href="https://suface.github.io/">https://suface.github.io/</a>	
-  	<style>
-*{ margin:0; padding:0;}
-html,body{ width:100%;}
-ul,li{ list-style:none;}
- 
-.box{display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; height: 43px; line-height: 42px; border-bottom: #bcbcbc 1px solid; background-color: #fafafa; color: #666; font-size: 15px; display: table\9; width: 100%;-webkit-box-sizing:border-box;box-sizing:border-box; }
- 
- 
-.box li{text-align: center; -webkit-box-flex: 1; -moz-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; display: table-cell\9;border-left:1px solid red;overflow: hidden;
-  
- 
-/*width:33.33%;*//*UC */
-width:100%;  /*2016 1012  解决溢出 问题*/
- 
-  text-overflow: ellipsis;
-  white-space: nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;}
-</style>
-     /*http://caibaojian.com/demo/flexbox/align-items.html*/
-    <style>
-    /*弹性模型盒*/
-.webkitbox{display: -webkit-box;
-           display: -moz-box;
-           display: -ms-flexbox;
-           display: box;
-         } 
-          
-.flexbox{display: -webkit-box;
-         display: -moz-box;
-         display: box;
-         display: -ms-flexbox;
-         display: -webkit-flex;
-         display: flex;
-         display: table\9;
-}
-.flexbox .flex1{
-    -webkit-box-flex: 1;
-       -moz-box-flex: 1;
-            box-flex: 1;
-        -webkit-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-                display: table-cell\9;
-}
- 
-.flexbox  .box-vertical-orient{  /*垂直*/ 
-    -webkit-box-orient:vertical;        /* 兼容webkit内核 */ 
-       -moz-box-orient:vertical;               /* 兼容gecko内核 */ 
-        -ms-box-orient:vertical;
-            box-orient:vertical;
-     
-    -webkit-flex-direction:column;
-       -moz-flex-direction:column;
-        -ms-flex-direction:column;
-            flex-direction:column;
-}
-     
-     
-     
-    /*使子元素 左右居中  上下垂直居中*/
-.children_center{ -webkit-align-items: center;
-                   align-items: center;    
-            -webkit-align-self:stretch;
-                    align-self:stretch;
-       -webkit-justify-content:center;
-               justify-content:center;
-              -webkit-box-pack:center;
-                      box-pack:center;
-             -webkit-box-align: center;
-                     box-align: center;
-     
-}  
-     
-     
-     
-  #fls{
-          
-         width:100%;
-         border:1px solid red;
-     min-height: 43px; margin:30px auto; padding:10px;
-     -webkit-box-sizing:border-box;box-sizing:border-box;}
-   
-   
-   #fls .left{
+<meta name="renderer" content="webkit|ie-comp|ie-stand"> 
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no" >
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="screen-orientation" content="portrait"> <!-- uc强制竖屏  设置横屏应用得在config里面设置，网页是无法做到的 -->
+<meta name="x5-orientation" content="portrait"> <!-- QQ强制竖屏 -->
+<meta name="msapplication-tap-highlight" content="no"> <!-- windows phone 点击无高光 -->
+<meta name="HandheldFriendly" content="true">  <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+<!--<meta name="wap-font-scale" content="no">　-->
+<link href="css/common/reset.css"  rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<div id="wrap" >
+<header class="index-header flexbox justify" >	
+   <div class="backBtn" >首页</div>
+   <div >sky</div>
+   <div class="menuBtn" id="j_menuBtn" title="菜单开关">
+     <i class="draw0"></i>
+     <i class="draw1"></i>
+     <i class="draw2"></i>
+   </div>
+</header>
+<!--designed by https://taylor-swift-1989.github.io-->
+
+<div class="index-banner"> 
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+
+</div>
+
+<div class="index-summary">
+<p>简介：<i>泰勒·斯威夫特</i>（Taylor Swift），1989年12月13日出生于美国宾夕法尼亚州，美国流行音乐、乡村音乐创作型女歌手、音乐制作人、演员、慈善家。2006年与独立唱片公司大机器唱片签...</p>
+</div>
+
+
+
     
-  display: -webkit-box;
-           display: box;
-            display: -webkit-flex;
-             display:flex;
-     
-        
-   /*适用于父类容器上) 父元素是left 使子元素im个垂直居中   设置在父元素上 ul上   是子元素 li垂直居中      <ul style="-webkit-align-items: center;">   <li></li>> >   <li></li>>   <li></li>  </ul>*/
-      -webkit-align-items: center;
-    align-items: center;
-      
-         
-          
-         /*适用于弹性盒模型子元素) 作用于自己left,  与 fls，与父类fls同高   设置或检索弹性盒子元素自身在侧轴（纵轴）方向上的对齐方式。  <ul >   <li style="-webkit-align-self: center;"</li>   <li></li>>   <li></li>  </ul>*/
-     -webkit-align-self:stretch;
-     align-self:stretch;
-      
-     /* 使子元素垂直居中*/
-   -webkit-justify-content:center; 
-      justify-content:center;
-       
-     /* box-pack表示父容器里面子容器的水平对齐方式*/
-     -webkit-box-pack:center;
-     box-pack:center;
-      
-     /*表示容器里面字容器的垂直对齐方式，*/
-     -webkit-box-align: center;
-     box-align: center; 
-     
-      
-       /* align-items: center;  2016 08 23  新增 display: flex; */
-    
-   width:80px; margin-right:10px; background:#999;}
-   #fls .left img{ width:50px;}
-   
-   #fls .right{ 
- 
-/* 使子元素垂直 布局*/
-     
-     -webkit-box-sizing:border-box;box-sizing:border-box;
-   border-left:1px solid red; padding:10px; background:#AB0D10; margin-left:10px;
-       
-}
- 
-#fls .right input{ height:40px;  line-height:40px; overflow: hidden; display:block; width:100%; -webkit-appearance:none; border:0; background:#eee; margin-bottom:5px;}
-#fls .right div{ height:30px; line-height:30px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
-#fls .right p{height:20px; line-height:20px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;
-   }
-  </style>
-   
- 
-<ul class="box">
-    <li class="cui-item cui-tab-current">中国</li>
-    <li  class="cui-item">美美国222222美国国222222美国国222222美国美国</li>
-    <li  class="cui-item">日本</li>
-    <i   class="cui-tab-scrollbar cui-tabnum3"><span>1</span></i>
-  </ul>
    
   <style>
-  #bas{
-  border:1px solid #000; height: 43px; line-height: 43px; margin:30px auto;
- width:100%;-webkit-box-sizing:border-box;box-sizing:border-box; }
-   
- 
-   #bas li{  text-align: center;  font-size:12px;    -webkit-flex-grow:1; -webkit-flex-shrink:1;
   
-   border-left:1px solid red;-webkit-box-sizing:border-box;box-sizing:border-box;
-   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;}
   </style>
-  
-  
- 
-  <ul id="bas" class="flexbox">
-     <li class="flex1 ">111111</li>
-      <li class="flex1 ">2a少时诵诗书s国美222222222萨达dddd2</li>
-       <li class="flex1 ">3333</li>
+
+<div class="item-block">
+  <div  class="item-content flexbox href retinabb" data-href="https://m.lrlz.com/h5/activity/msmember/index5.html">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1  "  >
+         <h1 class="item-title"> 移动端 dialog组建</h1>
+          <p>  移动端轻量的弹框组件,轻巧快速，基于原生js，可定制主题，类似微信UI界面...p</p>
+    </div>
+  </div>
+
+<div  class="item-content flexbox href retinabb" data-href="http://www.cnblogs.com/surfaces/p/8426056.html">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1   " >
+         <h1 class="item-title"> 移动端 swipedelete 组建</h1>
+          <p>功能比较简单常见，最近整理一下做备份记录。先看看线上 整体实际效果 ，基于原生js,不依赖其他类库 </p>
+    </div>
+  </div>
+
+
+<div  class="item-content flexbox href retinabb" data-href="http://www.cnblogs.com/surfaces/p/5364742.html">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1  " >
+         <h1 class="item-title">移动端 细节</h1>
+          <p>结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了解；结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="index-more href" data-href="http://www.cnblogs.com/surfaces/">查看更多<i class="arrow"></i></div>
+
+
+<div class="copyright href" data-href="https://taylor-swift-1989.github.io/">designed by https://taylor-swift-1989.github.io/</div>
+
+
+
+<div class="menu_content hide blurbk translateZ">
+  <ul id="j_menutentUl" class="j_menutentUl">
+  	
+  	
+    <li class="retainbb href" data-href=""><a class="arrow">个人文档</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">个人收藏</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">源码阅读</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">个人轮子</a></li>
+    <li class="retainbb href" data-href="" ><a class="arrow">个人博客</a></li>
   </ul>
-   
-   
-   
- 
- 
-  <div id="fls" class="flexbox">
-    <div class="left " style="min-height:150px;">
-        <img src="../images/3.jpg">
-    </div>
-     <div class="right  flex1 " style="position:relative; display:block; background:#ddd; height: auto; overflow: hidden;">
-    <!--<div class="right  flex1 webkitbox box-vertical-orient">-->
-         <input type="text" value="222" >
-         <div> 有道桌面词典显示文有“收缩”之意子”。</div>
-          <p style="position:absolute; bottom:0; left:0; display:block;">pppppppppppppppp”flex”一词中文有“收缩”之意。不pppp过释都显得很牵强。pppp</p>
-    </div>
-  </div>
-   
-   
-   
-  <style>
-   #fls2{
-          
-         width:100%;
-         border:1px solid red;
-     min-height: 43px; margin:30px auto; padding:10px;
-     -webkit-box-sizing:border-box;box-sizing:border-box;}
-   
-   
-   #fls2 .left{
-   
+
+</div>
+</div>
+
+<script>
+  document.body.addEventListener('touchstart', function () { }); 
   
-      /*http://caibaojian.com/demo/flexbox/align-items.html*/
-        
-   /*适用于父类容器上) 父元素是left 使子元素im个垂直居中   设置在父元素上 ul上   是子元素 li垂直居中      <ul style="-webkit-align-items: center;">   <li></li>> >   <li></li>>   <li></li>  </ul>*/
-      -webkit-align-items: center;
-    align-items: center;
-      
-         
-          
-         /*适用于弹性盒模型子元素) 作用于自己left,  与 fls，与父类fls同高   设置或检索弹性盒子元素自身在侧轴（纵轴）方向上的对齐方式。  <ul >   <li style="-webkit-align-self: center;"</li>   <li></li>>   <li></li>  </ul>*/
-     -webkit-align-self:stretch;
-     align-self:stretch;
-      
-     /* 使子元素垂直居中*/
-   -webkit-justify-content:center; 
-      justify-content:center;
-       
-     /* box-pack表示父容器里面子容器的水平对齐方式*/
-     -webkit-box-pack:center;
-     box-pack:center;
-      
-     /*表示容器里面字容器的垂直对齐方式，*/
-     -webkit-box-align: center;
-     box-align: center; 
-     
-      
-       /* align-items: center;  2016 08 23  新增 display: flex; */
-    
-   width:80px; margin-right:10px; background:#999;}
-   #fls2 .left img{ width:50px;}
-   
-   #fls2 .right{ 
- 
-/* 使子元素垂直 布局*/
-     
-     
- 
-     -webkit-box-sizing:border-box;box-sizing:border-box;
-   border-left:1px solid red; padding:10px; background:#AB0D10; margin-left:10px;
-       
-}
- 
-#fls2 .right input{ height:40px;  line-height:40px; overflow: hidden; display:block; width:100%; -webkit-appearance:none; border:0; background:#eee; margin-bottom:5px;}
-#fls2 .right div{ height:30px; line-height:30px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
-#fls2 .right p{height:20px; line-height:20px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
-</style>
- 
-  <div id="fls2" class="flexbox">
-    <div class="left flexbox ">
-        <img src="images/pic/taylor-swift1.jpeg">
-    </div>
-   <!-- <div class="right flexbox  flex1  box-vertical-orient">-->
-    <div class="right  flex1  " style="position:relative; display:block; background:#ddd; height: auto; overflow: hidden;">
-         <input type="text" value="222" >
-         <div> 有道桌面词典显示文有“收缩”之意。不过”房子-x”一词中文有“收缩”之意。不过”房子-。box子”。</div>
-          <p>pppppppppppppppp”flex”一词中文有“收缩”之意。不pppp过释都显得很牵强。pppp</p>
-    </div>
-  </div>
-   
-   
-   
-     上面  style="position:relative; display:block; background:#ddd; height: auto; overflow: hidden;">中的
- overflow: hidden;  影响 ios10
-   
-   
-   
-   
-        <style>
-     
-           .clearfix{*zoom:1;}
-           .clearfix:after{clear:both; content:"."; display:block; height:0; visibility:hidden;}
-        
-            .fl{float:left; display:inline;}
-            .fr{float:right; display:inline;}
- 
-            .list3{ min-height: 44px;; margin: 10px; height: auto; overflow: hidden; border: 2px solid red;;}
-            .list3 .left3{ overflow: hidden;width: 300px;    max-height: 215px; margin-right: 10px;}
-            .list3 .right3{ background: #eee;}
-        </style>
-         
-         
-         
-        <article class="list3 clearfix">
-            <div class="left3 fl" href="http://www.itvfans.com/jianjie/32775.html" title="国务卿女士(Madam Secretary)" class="fancyimg home-blog-entry-thumb">
-                     
-                        <img class="box-hide box-show" src="http://img.itvfans.com/wp-content/uploads/32775.jpg?imageView2/1/w/300/h/450/q/100" data-original="http://img.itvfans.com/wp-content/uploads/32775.jpg?imageView2/1/w/300/h/450/q/100" alt="国务卿女士(Madam Secretary)" style="display: block;">
-         
-          </div>
-                <div class="right3 clearfix">
-                    右边
-                </div>
-            </article>
-  	
-  	
-  	
-    参考搭建
-    https://blog.csdn.net/obkoro1/article/details/67634948
-    
-     个人 github  博客
-  </body>
+  var doc=document;
+  var  j_menuBtn=doc.getElementById("j_menuBtn");
+  var  menu_content=doc.querySelector(".menu_content");
+  var menu_contentLi=menu_content.getElementsByTagName("li");
+  var liLen=menu_contentLi.length;
+  var j_menutentUl=doc.getElementById("j_menutentUl");
+  var isHide=true;
+  
+  j_menuBtn.addEventListener("click",function(){
+	   var that=this;   
+	   if(isHide){
+		  menu_content.classList.add('menu_content_animated'); 
+		  that.classList.add('G_close'); 
+		  menu_content.className =menu_content.className.replace('hide','show') 
+		   
+	  }else{
+		   that.classList.remove('G_close'); 
+		   menu_content.className =menu_content.className.replace('show','hide') 
+		   menu_content.classList.remove('menu_content_animated'); 
+		  
+	  }
+	 isHide=!isHide;  
+	 for(var i=0;i<liLen;i++){
+		 menu_contentLi[i].style.webkitAnimationDelay=0.1*i+'s';
+		
+	 }
+	  
+  });
+  
+  var  href=document.querySelectorAll(".href");
+  for(var i=0;i<href.length;i++){
+  href[i].addEventListener("click",function(){
+  	var href=this.getAttribute("data-href");;
+  	if(href){
+  	window.location.href=href;
+  	}
+  })
+  };
+
+</script>
+</body>
+</html>
+
+</body>
 </html>

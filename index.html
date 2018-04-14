@@ -28,13 +28,14 @@
 <div id="wrap" >
 <header class="index-header flexbox justify" >	
    <div class="backBtn" >首页</div>
-   <div >Apple</div>
+   <div >sky</div>
    <div class="menuBtn" id="j_menuBtn" title="菜单开关">
      <i class="draw0"></i>
      <i class="draw1"></i>
      <i class="draw2"></i>
    </div>
 </header>
+<!--designed by https://taylor-swift-1989.github.io-->
 
 <div class="index-banner"> 
                  <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
@@ -50,75 +51,25 @@
     
    
   <style>
-  	.item-block{background:#fff;  display:block; overflow: auto;}
-  	.item-block .item-content:active{ background: rgba(17,17,17,.1)}
-
-   .item-content{ width:100%; min-height: 44px; margin:0 auto; padding:15px; -webkit-box-sizing:border-box;box-sizing:border-box;}
-    .item-content:last-child:after{  display: none;}
-   .item-content .item-media{
-          
-   /*适用于父类容器上) 父元素是left 使子元素im个垂直居中   设置在父元素上 ul上   是子元素 li垂直居中      <ul style="-webkit-align-items: center;">   <li></li>> >   <li></li>>   <li></li>  </ul>*/
-      -webkit-align-items: center;
-    align-items: center;
-      
-         
-          
-         /*适用于弹性盒模型子元素) 作用于自己left,  与 fls，与父类fls同高   设置或检索弹性盒子元素自身在侧轴（纵轴）方向上的对齐方式。  <ul >   <li style="-webkit-align-self: center;"</li>   <li></li>>   <li></li>  </ul>*/
-     -webkit-align-self:stretch;
-     align-self:stretch;
-      
-     /* 使子元素垂直居中*/
-   -webkit-justify-content:center; 
-      justify-content:center;
-       
-     /* box-pack表示父容器里面子容器的水平对齐方式*/
-     -webkit-box-pack:center;
-     box-pack:center;
-      
-     /*表示容器里面字容器的垂直对齐方式，*/
-     -webkit-box-align: center;
-     box-align: center; 
-         
-   width:80px;  position: relative;}
-   .item-content .item-media img{ width:100%;}
-   
-   .item-content .item-right{ 
- 
-position:relative; display:block; height: auto; overflow: hidden;     
-     -webkit-box-sizing:border-box;box-sizing:border-box;margin-left:15px; /*background: #fcfcfc;*/
-       
-}
- 
-.item-content .item-right input{ height:40px;  line-height:40px; overflow: hidden; display:block; width:100%; -webkit-appearance:none; border:0; background:#eee; margin-bottom:5px;}
-.item-content .item-right  .item-title{ height:30px; line-height:30px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;  font-size: 14px;  color: #666;}
-.item-content .item-right p{height:36px; line-height:18px; max-width:100%;  font-size: 13px;; color: #999; margin-top: 5px;;
-word-break: break-all;
   
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
   </style>
 
 <div class="item-block">
-  <div  class="item-content flexbox retinabb">
+  <div  class="item-content flexbox href retinabb" data-href="https://m.lrlz.com/h5/activity/msmember/index5.html">
     <div class="item-media flexbox ">
                  <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
     </div>
-    <div class="item-right  flex1  href"  data-href="https://m.lrlz.com/h5/activity/msmember/index5.html">
+    <div class="item-right  flex1  "  >
          <h1 class="item-title"> 移动端 dialog组建</h1>
           <p>  移动端轻量的弹框组件,轻巧快速，基于原生js，可定制主题，类似微信UI界面...p</p>
     </div>
   </div>
 
-<div  class="item-content flexbox retinabb">
+<div  class="item-content flexbox href retinabb" data-href="http://www.cnblogs.com/surfaces/p/8426056.html">
     <div class="item-media flexbox ">
                  <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
     </div>
-    <div class="item-right  flex1 href  " data-href="http://www.cnblogs.com/surfaces/p/8426056.html">
+    <div class="item-right  flex1   " >
          <h1 class="item-title"> 移动端 swipedelete 组建</h1>
           <p>功能比较简单常见，最近整理一下做备份记录。先看看线上 整体实际效果 ，基于原生js,不依赖其他类库 </p>
     </div>
@@ -136,15 +87,23 @@ word-break: break-all;
   </div>
 
 </div>
+
+<div class="index-more href" data-href="http://www.cnblogs.com/surfaces/">查看更多<i class="arrow"></i></div>
+
+
+<div class="copyright href" data-href="https://taylor-swift-1989.github.io/">designed by https://taylor-swift-1989.github.io/</div>
+
+
+
 <div class="menu_content hide blurbk translateZ">
   <ul id="j_menutentUl" class="j_menutentUl">
   	
   	
-    <li class="retainbb"><a class="arrow">个人文档</a></li>
-    <li class="retainbb"><a class="arrow">个人收藏</a></li>
-    <li class="retainbb"><a class="arrow">源码阅读</a></li>
-    <li class="retainbb"><a class="arrow">个人轮子</a></li>
-    <li class="retainbb"><a class="arrow">个人博客</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">个人文档</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">个人收藏</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">源码阅读</a></li>
+    <li class="retainbb href" data-href=""><a class="arrow">个人轮子</a></li>
+    <li class="retainbb href" data-href="" ><a class="arrow">个人博客</a></li>
   </ul>
 
 </div>
@@ -185,7 +144,10 @@ word-break: break-all;
   var  href=document.querySelectorAll(".href");
   for(var i=0;i<href.length;i++){
   href[i].addEventListener("click",function(){
-  	window.location.href=this.getAttribute("data-href");
+  	var href=this.getAttribute("data-href");;
+  	if(href){
+  	window.location.href=href;
+  	}
   })
   };
 
