@@ -1,0 +1,462 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人博客</title>
+<meta http-equiv="X-UA-Compatible" content="edge,chrome=1"  />
+<meta http-equiv="Cache-Control" content="no-siteapp" /> <!-- 避免转码 -->
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="viewport"   content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"  />
+<meta name="renderer" content="webkit|ie-comp|ie-stand"> 
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no" >
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="screen-orientation" content="portrait"> <!-- uc强制竖屏  设置横屏应用得在config里面设置，网页是无法做到的 -->
+<meta name="x5-orientation" content="portrait"> <!-- QQ强制竖屏 -->
+<meta name="msapplication-tap-highlight" content="no"> <!-- windows phone 点击无高光 -->
+<meta name="HandheldFriendly" content="true">  <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+<meta name="wap-font-scale" content="no">　
+  <style>
+
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,span,img,button ,em,i,b{margin:0;padding:0;}
+html{-webkit-box-sizing:border-box;margin:0 auto;min-width: 320px;;-webkit-touch-callout:none;-webkit-user-select:none;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;overflow-x:hidden;  }
+body{ height:auto;min-height:568px; font-family: Microsoft Yahei,'Helvetica Neue',Helvetica,tahoma,arial,sans-serif; text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased; line-height: 1; font-size:14px;}
+article,aside,dialog,figure,footer,header,hgroup,menu,nav,section{display:block}
+dl,li,menu,ol,ul{list-style:none}
+address,em,i,th{font-weight:400;font-style:normal}
+a{color:#999; display:block;}
+a:link,a:visited{color:#999;text-decoration:none;cursor:pointer}
+a:hover{cursor:pointer}
+a:active,a:focus{outline:0;}
+img{width:100%;border:0;vertical-align:middle;-webkit-user-select:none;}
+input,select{outline:0}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-variant:normal}
+button,input[type=button],input[type=tel],input[type=reset],input[type=submit]{line-height:normal!important;-webkit-appearance:none}
+::-webkit-input-placeholder{color:#eee; text-align:center;}
+.clearfix:after{clear:both;content:".";display:block;height:0;visibility:hidden}
+.fl{float:left}
+.fl,.fr{display:inline}
+.fr{float:right}
+
+.disabled { pointer-events: none; }
+@media (min-width:768px){
+html{-webkit-user-select:auto !important;}
+}
+/*GPU hack*/
+.translateZ{ -webkit-transform:translateZ(0);transform:translateZ(0); -webkit-backface-visibility:hidden;backface-visibility:hidden;}
+
+
+    /*弹性模型盒*/
+.webkitbox{display: -webkit-box;
+           display: -moz-box;
+           display: -ms-flexbox;
+           display: box;
+         } 
+          
+.flexbox{display: -webkit-box;
+         display: -moz-box;
+         display: box;
+         display: -ms-flexbox;
+         display: -webkit-flex;
+         display: flex;
+         display: table\9;
+}
+.flexbox .flex1{
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+            box-flex: 1;
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+                display: table-cell\9;
+}
+ 
+.flexbox  .box-vertical-orient{  /*垂直排列*/ 
+    -webkit-box-orient:vertical;        /* 兼容webkit内核 */ 
+       -moz-box-orient:vertical;               /* 兼容gecko内核 */ 
+        -ms-box-orient:vertical;
+            box-orient:vertical;
+     
+    -webkit-flex-direction:column;
+       -moz-flex-direction:column;
+        -ms-flex-direction:column;
+            flex-direction:column;
+}
+     
+     
+     
+    /*使子元素 左右居中  上下垂直居中*/
+.children_center{ -webkit-align-items: center;
+                   align-items: center;    
+            -webkit-align-self:stretch;
+                    align-self:stretch;
+       -webkit-justify-content:center;
+               justify-content:center;
+              -webkit-box-pack:center;
+                      box-pack:center;
+             -webkit-box-align: center;
+                     box-align: center;
+     
+}  
+
+/*两端对其*/
+.justify{ -webkit-box-pack: justify; 
+-ms-flex-pack: justify; 
+box-pack:justify;
+ -webkit-justify-content: space-between; 
+ justify-content: space-between; 
+ }
+
+
+
+/*css 指示箭头*/
+.arrow:after {
+    content: " "; display: inline-block; -webkit-transform: rotate(45deg); transform: rotate(45deg); height: 8px; width: 8px;border-width: 2px 2px 0 0;
+    border-color: #c7c7cc;  border-style: solid; outline:1px solid transparent;position: absolute; right: 15px;top: 50%;margin-top: -5px;pointer-events: none;
+}
+
+/*Retina 1px border start */
+.retinabt,.retinabb,.retinabl,.retinabr,.retinab{position:relative;}
+.retinabt:before,.retinabb:after{pointer-events:none;position:absolute;content:"";height:1px;background:rgba(32,35,37,.14);left:0;right:0;z-index:26;}
+.retinabt:before{top:0;z-index:26;}
+.retinabb:after{bottom:0;z-index:26;}
+.retinabl:before,.retinabr:after{pointer-events:none;position:absolute;content:"";width:1px;background:rgba(32,35,37,.14);top:0;bottom:0}
+.retinabl:before{left:0;z-index:26;}
+.retinabr:after{right:0;z-index:26;}
+.retinab:after{position:absolute;content:"";top:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;height:100%;border:1px solid rgba(32,35,37,.14);pointer-events:none;z-index:26;}
+@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5),(min-resolution:144dpi),(min-resolution:1.5dppx){
+.retinabt:before,.retinabb:after{-webkit-transform:scaleY(.5);transform:scaleY(.5) }
+.retinabl:before,.retinabr:after{-webkit-transform:scaleX(.5);transform:scaleX(.5) }
+.retinab:after{width:200%;height:200%;-webkit-transform:scale(.5);transform:scale(.5) }
+.retinabt:before,.retinabl:before,.retinab:after{-webkit-transform-origin:0 0;transform-origin:0 0}
+.retinabb:after,.retinabr:after{-webkit-transform-origin:100% 100%;transform-origin:100% 100%}
+}
+@media (-webkit-device-pixel-ratio:1.5){
+.retinabt:before,.retinabb:after{-webkit-transform:scaleY(.6666);transform:scaleY(.6666) }
+.retinabl:before,.retinabr:after{-webkit-transform:scaleX(.6666);transform:scaleX(.6666)}
+.retinab:after{width:150%;height:150%;-webkit-transform:scale(.6666);transform:scale(.6666) }
+}
+@media (-webkit-device-pixel-ratio:3){
+.retinabt:before,.retinabb:after{-webkit-transform:scaleY(.3333);transform:scaleY(.3333)}
+.retinabl:before,.retinabr:after{-webkit-transform:scaleX(.3333);transform:scaleX(.3333)}
+.retinab:after{width:300%;height:300%;-webkit-transform:scale(.3333);transform:scale(.3333)}
+}
+@media (-webkit-min-device-pixel-ratio:4),(min-device-pixel-ratio:4){
+.retinabt:before,.retinabb:after{-webkit-transform:scaleY(.25);transform:scaleY(.25)}
+.retinabl:before,.retinabr:after{-webkit-transform:scaleX(.25);transform:scaleX(.25)}
+.retinab:after{width:400%;height:400%;-webkit-transform:scale(.25);transform:scale(.25)}
+}
+/*Retina 1px border end */
+/**********************************************************************/
+
+#wrap{width:100%; ; min-height:548px;  margin:0 auto;height:auto;-webkit-box-sizing:border-box;box-sizing:border-box;position:relative;z-index:5; padding-bottom:44px; overflow:hidden; display:block; }
+.index-header{ height:44px; line-height:44px; text-align: center; background: rgba(0,0,0,0.8); color:#fff; font-size: 14px; z-index: 888;;   position:relative;   position: fixed; left: 0; right: 0; margin-left: auto; margin-right: auto;; top: 0;; -webkit-box-sizing:border-box;box-sizing:border-box;}
+.index-banner{ margin-top: 44px; height: auto; overflow: hidden; position: relative;}
+
+
+
+/*介绍*/
+.index-summary{ position: relative; overflow: hidden;}
+.index-summary p{ font-size:14px; text-indent:2em; padding:0 12px; color:#999; line-height:24px; margin:10px auto;}
+.index-summary p i{ color: #007aff; font-style:normal;}
+
+
+
+.backBtn{ padding: 0 15px}
+
+/*菜单*/
+.menuBtn{ position:relative; width:22px; height:44px;  padding:0 15px;}
+
+
+.menuBtn i{width:22px;height:1px;background:#fff;position:absolute;right:15px;-webkit-backface-visibility: hidden;
+-webkit-transition:-webkit-transform .5s;
+ transition:transform .5s}
+
+.menuBtn .draw0{top:16px;;}
+.menuBtn .draw1{top:22px; }
+.menuBtn .draw2{top:28px;}
+.G_close .draw0{top:22px;-webkit-transform rotate(45deg);transform:rotate(45deg);  -webkit-transform-origin: center;transform-origin: center;}
+.G_close .draw1{background:transparent;}
+.G_close .draw2{top:22px ;-webkit-transform:rotate(-45deg);transform: rotate(-45deg);-webkit-transform-origin: center;transform-origin: center;}
+
+.draw:checked{
+	-webkit-transition:-webkit-transform .5s;
+}
+
+.menu_content{ width:100%; height:110%;  position:fixed; left:0; right:0; margin-left:auto; margin-right:auto; top:44px;background: rgba(0,0,0,0.8); visibility:hidden; opacity:0; -webkit-transition:opacity .3s,visibility .2s,height .5s ease-out; }
+.menu_content.hide{  visibility: hidden; opacity:0; z-index:0; height:0%;-webkit-transition:opacity .6s,visibility .7s,height .54s;} 	
+.menu_content.show{  visibility: visible; opacity:1; z-index:99; height:100%; -webkit-backface-visibility:hidden;} 
+.menu_content ul{padding:20px 10%;}
+.menu_content ul li{ height:46px; line-height:46px; color:#fff; text-align:left; font-size:13px; text-indent:em;;  
+border-bottom: 1px solid rgba(255,255,255,.2);
+        
+    -webkit-animation-duration: .52s;
+    animation-duration: .52s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+ 	
+  }
+.menu_content.menu_content_animated li{
+-webkit-animation-name: returnToNormal;
+    animation-name: returnToNormal;
+	
+	/*-webkit-animation-name: resize;
+    animation-name: resize;*/
+	}
+
+.menu_content ul li a{ display:block; color:#fff; position: relative;}
+
+@-webkit-keyframes returnToNormal {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+  }
+ 
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+ 
+@keyframes returnToNormal {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+  }
+ 
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}                  
+
+
+
+@-webkit-keyframes resize {
+from, 60%, 75%, 90%, to {
+  -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+0% {
+  opacity: 0;
+  -webkit-transform: scale(2,2);
+  transform: scale(2,2);
+}
+100% {
+  opacity: 1;
+  -webkit-transform: scale(1,1);
+  transform: scale(1,1);
+} 
+}
+
+@keyframes resize {
+from, 60%, 75%, 90%, to {
+  -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+0% {
+  opacity: 0;
+  -webkit-transform: scale(2,2);
+  transform: scale(2,2);
+}
+100% {
+  opacity: 1;
+  -webkit-transform: scale(1,1);
+  transform: scale(1,1);
+}
+}
+
+
+html,body,#wrap{ background:#efeff4}
+
+
+@media (min-width:640px){
+.menu_content ul{padding:10px 15px; height: auto; overflow: hidden;}
+.menu_content ul li{  }
+</style>
+　
+</head>
+
+<body>
+	
+
+
+<div id="wrap" >
+<header class="index-header flexbox justify" >	
+   <div class="backBtn" >首页</div>
+   <div >Apple</div>
+   <div class="menuBtn" id="j_menuBtn" title="菜单开关">
+     <i class="draw0"></i>
+     <i class="draw1"></i>
+     <i class="draw2"></i>
+   </div>
+</header>
+
+<div class="index-banner"> 
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+
+</div>
+
+<div class="index-summary">
+<p>简介：<i>泰勒·斯威夫特</i>（Taylor Swift），1989年12月13日出生于美国宾夕法尼亚州，美国流行音乐、乡村音乐创作型女歌手、音乐制作人、演员、慈善家。2006年与独立唱片公司大机器唱片签...</p>
+</div>
+
+
+
+    
+   
+  <style>
+  	.item-block{background:#fff;  display:block; overflow: auto;}
+  	.item-block .item-content:active{ background: rgba(17,17,17,.1)}
+
+   .item-content{ width:100%; min-height: 44px; margin:0 auto; padding:15px; -webkit-box-sizing:border-box;box-sizing:border-box;}
+    .item-content:last-child:after{  display: none;}
+   .item-content .item-media{
+          
+   /*适用于父类容器上) 父元素是left 使子元素im个垂直居中   设置在父元素上 ul上   是子元素 li垂直居中      <ul style="-webkit-align-items: center;">   <li></li>> >   <li></li>>   <li></li>  </ul>*/
+      -webkit-align-items: center;
+    align-items: center;
+      
+         
+          
+         /*适用于弹性盒模型子元素) 作用于自己left,  与 fls，与父类fls同高   设置或检索弹性盒子元素自身在侧轴（纵轴）方向上的对齐方式。  <ul >   <li style="-webkit-align-self: center;"</li>   <li></li>>   <li></li>  </ul>*/
+     -webkit-align-self:stretch;
+     align-self:stretch;
+      
+     /* 使子元素垂直居中*/
+   -webkit-justify-content:center; 
+      justify-content:center;
+       
+     /* box-pack表示父容器里面子容器的水平对齐方式*/
+     -webkit-box-pack:center;
+     box-pack:center;
+      
+     /*表示容器里面字容器的垂直对齐方式，*/
+     -webkit-box-align: center;
+     box-align: center; 
+         
+   width:80px;  position: relative;}
+   .item-content .item-media img{ width:100%;}
+   
+   .item-content .item-right{ 
+ 
+position:relative; display:block; height: auto; overflow: hidden;     
+     -webkit-box-sizing:border-box;box-sizing:border-box;margin-left:15px; /*background: #fcfcfc;*/
+       
+}
+ 
+.item-content .item-right input{ height:40px;  line-height:40px; overflow: hidden; display:block; width:100%; -webkit-appearance:none; border:0; background:#eee; margin-bottom:5px;}
+.item-content .item-right  .item-title{ height:30px; line-height:30px; max-width:100%; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;  font-size: 14px;  color: #666;}
+.item-content .item-right p{height:36px; line-height:18px; max-width:100%;  font-size: 13px;; color: #999; margin-top: 5px;;
+word-break: break-all;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+  </style>
+
+<div class="item-block">
+  <div  class="item-content flexbox retinabb">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1  href"  data-href="https://m.lrlz.com/h5/activity/msmember/index5.html">
+         <h1 class="item-title"> 移动端 dialog组建</h1>
+          <p>  移动端轻量的弹框组件,轻巧快速，基于原生js，可定制主题，类似微信UI界面...p</p>
+    </div>
+  </div>
+
+<div  class="item-content flexbox retinabb">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1 href  " data-href="http://www.cnblogs.com/surfaces/p/8426056.html">
+         <h1 class="item-title"> 移动端 swipedelete 组建</h1>
+          <p>功能比较简单常见，最近整理一下做备份记录。先看看线上 整体实际效果 ，基于原生js,不依赖其他类库 </p>
+    </div>
+  </div>
+
+
+<div  class="item-content flexbox href retinabb" data-href="http://www.cnblogs.com/surfaces/p/5364742.html">
+    <div class="item-media flexbox ">
+                 <img src="http://mvimg11.meitudata.com/599f6e72bf87d7524.jpg">
+    </div>
+    <div class="item-right  flex1  " >
+         <h1 class="item-title">移动端 细节</h1>
+          <p>结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了解；结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了结合 Framework7 和ios UI系统，微信weUI，支付宝H5    我们在移动端一些css用法 细节的有了更深的了</p>
+    </div>
+  </div>
+
+</div>
+<div class="menu_content hide blurbk translateZ">
+  <ul id="j_menutentUl" class="j_menutentUl">
+  	
+  	
+    <li class="retainbb"><a class="arrow">个人文档</a></li>
+    <li class="retainbb"><a class="arrow">个人收藏</a></li>
+    <li class="retainbb"><a class="arrow">源码阅读</a></li>
+    <li class="retainbb"><a class="arrow">个人轮子</a></li>
+    <li class="retainbb"><a class="arrow">个人博客</a></li>
+  </ul>
+
+</div>
+</div>
+
+<script>
+  document.body.addEventListener('touchstart', function () { }); 
+  
+  var doc=document;
+  var  j_menuBtn=doc.getElementById("j_menuBtn");
+  var  menu_content=doc.querySelector(".menu_content");
+  var menu_contentLi=menu_content.getElementsByTagName("li");
+  var liLen=menu_contentLi.length;
+  var j_menutentUl=doc.getElementById("j_menutentUl");
+  var isHide=true;
+  
+  j_menuBtn.addEventListener("click",function(){
+	   var that=this;   
+	   if(isHide){
+		  menu_content.classList.add('menu_content_animated'); 
+		  that.classList.add('G_close'); 
+		  menu_content.className =menu_content.className.replace('hide','show') 
+		   
+	  }else{
+		   that.classList.remove('G_close'); 
+		   menu_content.className =menu_content.className.replace('show','hide') 
+		   menu_content.classList.remove('menu_content_animated'); 
+		  
+	  }
+	 isHide=!isHide;  
+	 for(var i=0;i<liLen;i++){
+		 menu_contentLi[i].style.webkitAnimationDelay=0.1*i+'s';
+		
+	 }
+	  
+  });
+  
+  var  href=document.querySelectorAll(".href");
+  for(var i=0;i<href.length;i++){
+  href[i].addEventListener("click",function(){
+  	window.location.href=this.getAttribute("data-href");
+  })
+  };
+
+</script>
+</body>
+</html>
+
+</body>
+</html>
