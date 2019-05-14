@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<link id="css" rel="stylesheet" type="text/css"  href="../../js/syntaxhighlighter/styles/shCoreDefault.css">
+
+	</head>
+	<body>
+		
+		<script  type="text/javascript" src="../../js/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../../js/syntaxhighlighter/scripts/shBrushAll.js"></script>
+
+
+
+
+
+	<div id="result_div">
+    	<pre class='brush: js;'>
+/* ---示例代码----*/
+
+function echo (){
+
+	var a="this is a example";
+	
+	alert("hello world "+a);
+
+}
+
+/* ---示例代码----*/
+    	</pre>
+    	
+    	<pre name="code" class="brush: java">
+        public class Person {
+ 
+        }
+    </pre>
+    <pre name="code" class="brush: js;">
+        function foo() {
+            var i = 3;
+        }
+    </pre>
+    <pre class="brush: java; collapse: true;">
+        public void javaMethod() {
+            int i = 3;
+        }
+    </pre>
+<script type="syntaxhighlighter" class="brush: js">
+        <![CDATA[
+      /**
+       * SyntaxHighlighter
+       */
+          function foo() {
+              if (counter <= 10)
+                  return;
+              // it works!
+          }
+        ]]>
+    </script>
+
+	</div>
+		
+		
+<script>
+	SyntaxHighlighter.all();
+
+</script>
+	</body>
+</html>
