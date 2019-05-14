@@ -270,7 +270,7 @@ from, 60%, 75%, 90%, to {
 
 
 .item-block{background:#fff;  display:block; overflow: auto;}
-.item-content:active,.item-content:hover{ background: rgba(17,17,17,.1)}
+.item-content:active{ background: rgba(17,17,17,.1)}
 .item-content{ width:100%; min-height: 44px; margin:0 auto; padding:15px; -webkit-box-sizing:border-box;box-sizing:border-box;}
 .item-content:last-child:after{  display: none;}
 .item-content .item-media{
@@ -317,11 +317,11 @@ word-break: break-all;
 .index-more{ text-align:  center; font-size: 14px; color: #999; padding:0 15px; height: 44px; line-height: 44px; margin-top: 15px; background: #fff;}
 .index-more i{  position: relative;;}
 .index-more i:after{ height: 8px; width: 8px;  border-width: 1px 1px 0 0; border-color: #c7c7cc;right: -13px; top: 50%; margin-top: -5px;}
- .index-more:active,.index-more:hover{ background: rgba(17,17,17,.1)}
+ .index-more:active{ background: rgba(17,17,17,.1)}
 
 /*首页版权*/
 .copyright{  text-align:  center; font-size: 12px; color: #999; padding: 15px; height: 22px; line-height: 22px;;}
-.copyright:active,.copyright:hover{ background: none !important; color: #777; }
+.copyright:active{ background: none !important; color: #777; }
 
 
 
