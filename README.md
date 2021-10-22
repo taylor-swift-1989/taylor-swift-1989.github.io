@@ -49,8 +49,8 @@
 - [移动端  开发细节](http://www.cnblogs.com/surfaces/p/5364742.html)
 
 
-
+https://taylor-swift-1989.github.io/index.html
 
 ## 个人博客
 - [博客园](http://www.cnblogs.com/surfaces)
-- [github](https://github.com/taylor-swift-1989/taylor-swift-1989.github.io)
+- [github](https://taylor-swift-1989.github.io/index.html)
