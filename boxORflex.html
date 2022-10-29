@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hello world!</title>
+   
+   
+</head>
+
+<!-- 页面载入后，调用init函数 -->
+<body >
+	<style>
+		*{ margin:0; padding:0;}
+		ul,li{ list-style: none;}
+		.wh200{ width: 300px; border:1px solid red;}
+		
+		.webkitbox{  display:-webkit-box;display:box;}
+		.webkitbox .flex1{   -webkit-box-flex:1;  box-flex:1;}
+		
+		/* //1.box-orient属性作用：确定父元素里子元素的排列方式，是水平还是垂直。 */
+		.webkitbox .row{box-orient:horizontal}
+		
+		
+		.flexbox{ display:flex;}
+		.flexbox .flex1{flex:1;}
+		.flexbox .row{flex-direction: row}
+		
+		ul ,li{ height: 200px; overflow:hidden;;}
+		
+		.input2{ height: 44px; line-height: 44px;}
+		.input2::input-placeholder{
+			color:yellow;padding-left:25px;
+		}
+		.input2::-webkit-input-placeholder{	
+			color: red;padding-left:45px;padding-top:22px;
+		}
+		.post-man  svg {
+		    fill: #409eff; width:12px;
+		}
+		
+		.post-man svg {
+		    fill: #409eff;width:12px;
+		    transform: rotate(-180deg) !important;
+		}
+	</style>
+<!-- 定义地图显示容器 -->
+<div style="width:300px;margin:0 auto ">
+	
+	<input type="text" class="input2" placeholder="请输入收货地址" />
+	<div class="post-man">
+	<svg  preserveAspectRatio="none" width="12px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.31021 5.64935C2.50388 5.45251 2.82045 5.44993 3.01729 5.6436L8.08159 10.6262L12.9768 5.6494C13.1705 5.45253 13.487 5.44991 13.6839 5.64356C13.8808 5.8372 13.8834 6.15377 13.6898 6.35064L8.79452 11.3275C8.4072 11.7212 7.77398 11.7264 7.38026 11.3391L2.31596 6.35643C2.11912 6.16277 2.11654 5.84619 2.31021 5.64935Z"></path></svg>
+	</div>
+	
+	  <ul class="wh200 webkitbox row">
+	      <li  style=" width: 100px">分类1如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项</li>
+	      <li class="flex1" style=" width: 0; background-color:yellow;">分类2</li>
+	      <li class="flex1" style=" width: 0;">分类3如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目所有项目的flex-shrink属性都为1，的 end</li>
+	    </ul>
+		
+		
+		<ul class="wh200 flexbox row">
+		    <li style=" width: 100px">分类1如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项性都为1，当空间不足时，都将等比例缩小。如果一个项</li>
+		    <li class="flex1" style="flex-shrink:0; background-color:yellow;">分类2  </li>
+		    <li class="flex1" style=" width: 0; ">分类3如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的所有项目的flex-shrink属性都为1，end</li>
+		  </ul>
+	
+	据内容来决定。但是被内容撑开，使用word-wrap:break-word;强制换行文字和字母无效
+	这时将盒子的width设置为 0 ，然后使用 flex样式，将宽度交给 flex 布局来决定，容器就不会被撑开
+	 width: 0;
+	 flex: 1
+	
+	
+	如果内容大小确定，
+	flex-grow:0;//是否自动增长空间
+	flex-shrink:0;//是否自动缩小空间 (min-width:100px; 兼容uc)
+	
+	
+	
+</div>
+</body>
+
+
+</html>
+
