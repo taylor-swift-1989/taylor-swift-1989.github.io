@@ -1,4 +1,3 @@
-
 //https://github.com/umicro/uView/blob/master/uview-ui/libs/function/trim.js
 
 //trim.js
@@ -167,8 +166,9 @@ function debounce(func, wait, immediate) {
   }
   
   function rafThrottle(fn) {
-    let locked = false;
-    return function(...args) {
+    var locked = false;
+    return function() {
+	    var args = arguments;	
       if (locked) return;
       locked = true;
       window.requestAnimationFrame(_ => {
@@ -322,7 +322,7 @@ function debounce(func, wait, immediate) {
   }  
  
  
-  function isEmptyObj(obj) {
+  function isEmptyJSON(obj) {
      return  !Object.getOwnPropertyNames(obj).length &&  !Object.getOwnPropertySymbols(obj).length||JSON.stringify(obj) ===  '{}' ;
    }
   
@@ -336,7 +336,7 @@ function debounce(func, wait, immediate) {
  /**
   * 是否json字符串
   */
- function  isJsonStr(value) {
+ function  isJSONStr(value) {
  	if (typeof value == 'string') {
  		try {
  			var obj = JSON.parse(value);
@@ -353,7 +353,7 @@ function debounce(func, wait, immediate) {
  }
  
  //https://github.com/lodash/lodash
- function isJson(obj){
+ function isJSONObj(obj){
   return typeof(obj) == "object" && Object.prototype.toString.call(obj).toLowerCase() == "[object object]" && !obj.length;
  }
  
