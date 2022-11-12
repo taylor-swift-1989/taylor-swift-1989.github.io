@@ -1,3 +1,231 @@
+
+ // "true"  => true
+  // "false" => false
+  // "null"  => null
+  // "42"    => 42
+  // "42.5"  => 42.5
+  // "08"    => "08"
+  // JSON    => parse if valid
+  // String  => self
+  function deserializeValue(value) {
+    var num
+    try {
+      return value ?
+        value == "true" ||
+        ( value == "false" ? false :
+          value == "null" ? null :
+          !/^0/.test(value) && !isNaN(num = Number(value)) ? num :
+          /^[\[\{]/.test(value) ? $.parseJSON(value) :
+          value )
+        : value
+    } catch(e) {
+      return value
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function	getRect (id,vue,useUni,delay){ //ID选择器：#the-id   #可以不要         紧紧支持id
+            var  that=vue;//Vue实例才拥有_isVue 属性，在此是避免观测Vue实例对象。
+		  	var  id =id;
+		
+			if(!vue||!vue._isVue){
+				console.log("请传入vue 对象")
+				//Promise.resolve(false);
+				return false;
+			}
+			var   useUni=useUni||false;
+			var   platform="APP-PLUS";
+
+				 //#ifdef APP-PLUS-NVUE || APP-NVUE
+				 platform = "APP-NVUE";///**App nvue*/     	//APP-PLUS-NVUE或APP-NVUE	 App nvue 页面
+				 //#endif
+				 
+               if(useUni){
+				  platform="APP-PLUS"; 
+			   }
+			
+           //console.log("getRect id",id)
+           //console.log("getRect this",JSON.stringify(that))
+			if(platform=="APP-PLUS"){////nvue不支持 uni.createSelectorQuery,
+			
+			         return new Promise(resolve => {
+			           setTimeout(() => {     
+							var selector=id.indexOf("#")!=-1?id:("#"+id);
+							   //console.log("selector ",selector)
+							var query = uni.createSelectorQuery().in(that);
+								query.select(selector).boundingClientRect(res => {
+									          res.methodType='uni';
+											   resolve(res)
+											//console.log("uni getRect 1得到布局位置信息" , res);
+											//res={"id":"as2ss","dataset":{"ref":"as2ss"},"left":12,"right":312,"top":286,"bottom":336,"width":300,"height":50}
+											
+								 }).exec();
+						}, delay||100);
+					})
+			
+			}else{
+			
+				////#ifdef APP-NVUE
+					const dom = weex.requireModule('dom');
+					var id2=id.replace("#",'')
+					//console.log("id2 ",id2)
+					return new Promise(resolve => {
+					  setTimeout(() => {     
+						         var talkcontent=that.$refs[id2]
+								 var result = dom.getComponentRect(talkcontent, res => {
+									       res.size.methodType='weex';
+										   resolve(res.size)
+									     // console.log("weex getRect 2得到布局位置信息" , res);
+									 //res.size= {"right":300,"left":0,"width":300,"bottom":71,"top":21,"height":50}
+									
+									
+								 })
+						 }, delay||100);
+					})
+					//// #endif
+			}
+
+	}
+
+//<view id="as2ss" ref="as2ss" style="width: 300px; height: 50px; background-color:#666;"> 布局盒子</view>
+
+//async	test_getRect(){
+// 	var   size=await  getRect("#as2ss",this,"weex");
+// 	console.log("getRect 结果--",size)
+// },
+
+
+//vue2 nextTick------------------------------------------------------------------
+// 定义一个队列
+const queue = []；
+
+ function queueJob(job){
+    // 不存在队列中，则放入 
+     if(!queue.includes(job)){
+         queue.push(job)
+     }
+     
+     // 放入微队列中执行
+    nextTick2(() => {
+         let jobFn
+         // 取出队列中的第一个effect进行执行
+         while(jobFn = queue.shift()){
+            jobFn && jobFn()
+         }
+    })
+}
+
+ function nextTick2(fn){
+  return fn ? Promise.reslove.then(fn) : Promise.reslove()
+}
+
+
+
+function nextTick (cb, ctx) {
+    var _resolve;
+      // 放入回调函数，等待DOM重新渲染完毕后执行
+    callbacks.push(function () {
+      if (cb) {
+        try {
+          // 修改执行上下文，指向当前页面实例
+          // 所以在我们没有使用箭头函数的前提下，this指向仍然正确
+          cb.call(ctx);
+        } catch (e) {
+          handleError(e, ctx, 'nextTick');
+        }
+      } else if (_resolve) {
+        _resolve(ctx);
+      }
+    });
+    if (!pending) {
+      pending = true;
+      timerFunc();
+    }
+    // $flow-disable-line
+    if (!cb && typeof Promise !== 'undefined') {
+      return new Promise(function (resolve) {
+        _resolve = resolve;
+      })
+    }
+    }
+	// 原型链上，挂载此方法
+	// Vue.prototype.$nextTick = function (fn) {
+	//       //参数1：回调函数，参数二：页面实例执行上下文
+	//       return nextTick(fn, this)
+	//     };
+	
+	
+	//timerFunc()
+	//Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，
+	//如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+
+    //宏任务耗费的时间是大于微任务的，所以在浏览器支持的情况下，优先使用微任务。
+	//如果浏览器不支持微任务，使用宏任务；但是，各种宏任务之间也有效率的不同，需要根据浏览器的支持情况，使用不同的宏任务。
+	
+	//
+	const callbacks = []   // 回调队列
+	let pending = false    // 异步锁
+	
+	// 执行队列中的每一个回调
+	function flushCallbacks () {
+	  pending = false     // 重置异步锁
+	  // 防止出现nextTick中包含nextTick时出现问题，在执行回调函数队列前，提前复制备份并清空回调函数队列
+	  const copies = callbacks.slice(0)
+	  callbacks.length = 0
+	  // 执行回调函数队列
+	  for (let i = 0; i < copies.length; i++) {
+	    copies[i]()
+	  }
+	}
+
+
+  let timerFunc;
+  /* 优先检测微任务(micro task) */
+  // 检测浏览器是否原生支持 Promise
+  if (typeof Promise !== 'undefined') {
+    const p = Promise.resolve()
+    timerFunc = () => {
+      p.then(flushCallbacks)
+    }
+    isUsingMicroTask = true
+  } 
+  // 以上都不支持的情况下，使用setTimeout
+  else {
+    timerFunc = () => {
+      setTimeout(flushCallbacks, 0)
+    }
+  }
+
+
+
+//vue3 nextTick-------------------------------------------------------------------------
+const resolvedPromise =  Promise.resolve();
+let currentFlushPromise = null;
+function nextTick(fn) {
+    const p = currentFlushPromise || resolvedPromise;
+    return fn ? p.then(this ? fn.bind(this) : fn) : p;
+}
+// ————————————————
+// 版权声明：本文为CSDN博主「haruhiSzmy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/qq_42316310/article/details/125389053
+
+//------------------------------------------------------------------------------
+
+
+
 //https://github.com/umicro/uView/blob/master/uview-ui/libs/function/trim.js
 
 //trim.js
@@ -241,58 +469,63 @@ function debounce(func, wait, immediate) {
   
   
   
-  
-  function mySystem() {
-         
-  		var system=uni.getSystemInfoSync();
-  		var statusBarHeight = system.statusBarHeight //状态栏高度
-  		var navigatorHeight=44;
-  		var isAndroid=false;
-  		
-  		if(system.system.toLowerCase().indexOf("ios")!=-1) {
-  		     navigatorHeight=44
-  			 isAndroid=false;
-  		 }else {
-  			isAndroid=true;
-  		    navigatorHeight=48
-  		 }
-  								
-  		var totalHeight=navigatorHeight+statusBarHeight
-  		
-  		
-  		
-  		var   platform="";
-  			 //#ifdef APP-PLUS
-  			  platform = "APP-PLUS";///**App*/
-  			  //#endif
-  			  //#ifdef APP-PLUS-NVUE
-  			  platform = "APP-PLUS-NVUE";///**App nvue*/
-  			  //#endif
-  			 
-  			  //#ifdef MP-WEIXIN
-  			  platform = "MP-WEIXIN";///**微信小程序*/
-  			  //#endif
-  			  
-  			  
-  		var navInfo={
-  			system:system,
-  			statusBarHeight:statusBarHeight,
-  			navigatorHeight:navigatorHeight,
-  			totalHeight:totalHeight,
-  			isAndroid:isAndroid,
-  			platform:platform,
-  			windowHeight:system.windowHeight,
-  			windowWidth:system.windowWidth,
-  			safeAreaInsetBottom:system.safeAreaInsets.bottom||0,
-  			
-  		 }	
-  		// localStorage&&localStorage.setItem("isAndroid", this.isAndroid)
-  		// localStorage&&localStorage.setItem("totalHeight", this.totalHeight)
-  		// localStorage&&localStorage.setItem("platform", platform)
-  		//console.log("mySystem ",navInfo,"platform",platform)
-  		return 	navInfo;				
-  	
-  }
+ function mySystem() {
+        
+ 		var system=uni.getSystemInfoSync();
+ 		var statusBarHeight = system.statusBarHeight //状态栏高度
+ 		var navigatorHeight=44;
+ 		var isAndroid=false;
+ 		
+ 		if(system.system.toLowerCase().indexOf("ios")!=-1) {
+ 		     navigatorHeight=44
+ 			 isAndroid=false;
+ 		 }else {
+ 			isAndroid=true;
+ 		    navigatorHeight=48
+ 		 }
+ 								
+ 		var totalHeight=navigatorHeight+statusBarHeight
+ 		
+ 	
+ 		//https://uniapp.dcloud.net.cn/tutorial/platform.html#preprocessor
+ 		var   platform="";
+ 			 //#ifdef APP-PLUS
+ 			  platform = "APP-PLUS";///**App*/
+ 			  //#endif
+ 			  
+ 			  //#ifdef APP-PLUS-NVUE || APP-NVUE
+ 			  platform = "APP-PLUS-NVUE";///**App nvue*/     	//APP-PLUS-NVUE或APP-NVUE	 App nvue 页面
+ 			  //#endif
+ 			 
+ 			  //#ifdef MP-WEIXIN
+ 			  platform = "MP-WEIXIN";///**微信小程序*/
+ 			  //#endif
+ 			  
+ 			  
+ 		var navInfo={
+ 			system:system,
+ 			statusBarHeight:statusBarHeight,
+ 			navigatorHeight:navigatorHeight,
+ 			totalHeight:totalHeight,
+ 			isAndroid:isAndroid,
+ 			platform:platform,
+ 			windowHeight:system.windowHeight,
+ 			windowWidth:system.windowWidth,
+ 			safeAreaBottom:system.safeAreaInsets.bottom||0,
+ 			safeAreaInsetBottom:system.safeAreaInsets.bottom||0,
+ 			
+ 		 }	
+ 		// localStorage&&localStorage.setItem("isAndroid", this.isAndroid)
+ 		// localStorage&&localStorage.setItem("totalHeight", this.totalHeight)
+ 		// localStorage&&localStorage.setItem("platform", platform)
+ 		//console.log("mySystem ",navInfo,"platform",platform)
+ 		return 	navInfo;				
+ 	
+ }
+ 
+ 
+
+
   
   
   /**
@@ -321,6 +554,8 @@ function debounce(func, wait, immediate) {
   	return false;
   }  
  
+ 
+
  
   function isEmptyJSON(obj) {
      return  !Object.getOwnPropertyNames(obj).length &&  !Object.getOwnPropertySymbols(obj).length||JSON.stringify(obj) ===  '{}' ;
@@ -400,6 +635,17 @@ function isFunction(obj){
 	
 	return  isFun(obj);
 }
+
+function isNumber(obj) {  
+    return obj === +obj  
+}  
+
+function isBoolean(obj) {  
+    return obj === !!obj  
+}  
+
+
+
  
   
  // -------正则 start------------------------------------------------------------------------------------- 
