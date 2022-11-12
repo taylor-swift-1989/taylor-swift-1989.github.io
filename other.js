@@ -1,34 +1,64 @@
 
- // "true"  => true
-  // "false" => false
-  // "null"  => null
-  // "42"    => 42
-  // "42.5"  => 42.5
-  // "08"    => "08"
-  // JSON    => parse if valid
-  // String  => self
-  function deserializeValue(value) {
-    var num
-    try {
-      return value ?
-        value == "true" ||
-        ( value == "false" ? false :
-          value == "null" ? null :
-          !/^0/.test(value) && !isNaN(num = Number(value)) ? num :
-          /^[\[\{]/.test(value) ? $.parseJSON(value) :
-          value )
-        : value
-    } catch(e) {
-      return value
-    }
-  }
 
 
+//-----------nvue------------------------------------------------------------------------
 
 
-
-
-
+function mySystem() {
+        
+ 		var system=uni.getSystemInfoSync();
+ 		var statusBarHeight = system.statusBarHeight //状态栏高度
+ 		var navigatorHeight=44;
+ 		var isAndroid=false;
+ 		
+ 		if(system.system.toLowerCase().indexOf("ios")!=-1) {
+ 		     navigatorHeight=44
+ 			 isAndroid=false;
+ 		 }else {
+ 			isAndroid=true;
+ 		    navigatorHeight=48
+ 		 }
+ 								
+ 		var totalHeight=navigatorHeight+statusBarHeight
+ 		
+ 	
+ 		//https://uniapp.dcloud.net.cn/tutorial/platform.html#preprocessor
+ 		var   platform="";
+ 			 //#ifdef APP-PLUS
+ 			  platform = "APP-PLUS";///**App*/
+ 			  //#endif
+ 			  
+ 			  //#ifdef APP-PLUS-NVUE || APP-NVUE
+ 			  platform = "APP-PLUS-NVUE";///**App nvue*/     	//APP-PLUS-NVUE或APP-NVUE	 App nvue 页面
+ 			  //#endif
+ 			 
+ 			  //#ifdef MP-WEIXIN
+ 			  platform = "MP-WEIXIN";///**微信小程序*/
+ 			  //#endif
+ 			  
+ 			  
+ 		var navInfo={
+ 			system:system,
+ 			statusBarHeight:statusBarHeight,
+ 			navigatorHeight:navigatorHeight,
+ 			totalHeight:totalHeight,
+ 			isAndroid:isAndroid,
+ 			platform:platform,
+ 			windowHeight:system.windowHeight,
+ 			windowWidth:system.windowWidth,
+ 			safeAreaBottom:system.safeAreaInsets.bottom||0,
+ 			safeAreaInsetBottom:system.safeAreaInsets.bottom||0,
+ 			
+ 		 }	
+ 		// localStorage&&localStorage.setItem("isAndroid", this.isAndroid)
+ 		// localStorage&&localStorage.setItem("totalHeight", this.totalHeight)
+ 		// localStorage&&localStorage.setItem("platform", platform)
+ 		//console.log("mySystem ",navInfo,"platform",platform)
+ 		return 	navInfo;				
+ 	
+ }
+ 
+ 
 
 
 
@@ -107,122 +137,10 @@ function	getRect (id,vue,useUni,delay){ //ID选择器：#the-id   #可以不要 
 // 	console.log("getRect 结果--",size)
 // },
 
-
-//vue2 nextTick------------------------------------------------------------------
-// 定义一个队列
-const queue = []；
-
- function queueJob(job){
-    // 不存在队列中，则放入 
-     if(!queue.includes(job)){
-         queue.push(job)
-     }
-     
-     // 放入微队列中执行
-    nextTick2(() => {
-         let jobFn
-         // 取出队列中的第一个effect进行执行
-         while(jobFn = queue.shift()){
-            jobFn && jobFn()
-         }
-    })
-}
-
- function nextTick2(fn){
-  return fn ? Promise.reslove.then(fn) : Promise.reslove()
-}
+//-----------nvue------------------------------------------------------------------------
 
 
 
-function nextTick (cb, ctx) {
-    var _resolve;
-      // 放入回调函数，等待DOM重新渲染完毕后执行
-    callbacks.push(function () {
-      if (cb) {
-        try {
-          // 修改执行上下文，指向当前页面实例
-          // 所以在我们没有使用箭头函数的前提下，this指向仍然正确
-          cb.call(ctx);
-        } catch (e) {
-          handleError(e, ctx, 'nextTick');
-        }
-      } else if (_resolve) {
-        _resolve(ctx);
-      }
-    });
-    if (!pending) {
-      pending = true;
-      timerFunc();
-    }
-    // $flow-disable-line
-    if (!cb && typeof Promise !== 'undefined') {
-      return new Promise(function (resolve) {
-        _resolve = resolve;
-      })
-    }
-    }
-	// 原型链上，挂载此方法
-	// Vue.prototype.$nextTick = function (fn) {
-	//       //参数1：回调函数，参数二：页面实例执行上下文
-	//       return nextTick(fn, this)
-	//     };
-	
-	
-	//timerFunc()
-	//Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，
-	//如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
-
-    //宏任务耗费的时间是大于微任务的，所以在浏览器支持的情况下，优先使用微任务。
-	//如果浏览器不支持微任务，使用宏任务；但是，各种宏任务之间也有效率的不同，需要根据浏览器的支持情况，使用不同的宏任务。
-	
-	//
-	const callbacks = []   // 回调队列
-	let pending = false    // 异步锁
-	
-	// 执行队列中的每一个回调
-	function flushCallbacks () {
-	  pending = false     // 重置异步锁
-	  // 防止出现nextTick中包含nextTick时出现问题，在执行回调函数队列前，提前复制备份并清空回调函数队列
-	  const copies = callbacks.slice(0)
-	  callbacks.length = 0
-	  // 执行回调函数队列
-	  for (let i = 0; i < copies.length; i++) {
-	    copies[i]()
-	  }
-	}
-
-
-  let timerFunc;
-  /* 优先检测微任务(micro task) */
-  // 检测浏览器是否原生支持 Promise
-  if (typeof Promise !== 'undefined') {
-    const p = Promise.resolve()
-    timerFunc = () => {
-      p.then(flushCallbacks)
-    }
-    isUsingMicroTask = true
-  } 
-  // 以上都不支持的情况下，使用setTimeout
-  else {
-    timerFunc = () => {
-      setTimeout(flushCallbacks, 0)
-    }
-  }
-
-
-
-//vue3 nextTick-------------------------------------------------------------------------
-const resolvedPromise =  Promise.resolve();
-let currentFlushPromise = null;
-function nextTick(fn) {
-    const p = currentFlushPromise || resolvedPromise;
-    return fn ? p.then(this ? fn.bind(this) : fn) : p;
-}
-// ————————————————
-// 版权声明：本文为CSDN博主「haruhiSzmy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-// 原文链接：https://blog.csdn.net/qq_42316310/article/details/125389053
-
-//------------------------------------------------------------------------------
 
 
 
@@ -261,6 +179,33 @@ function typeOf(obj) {
     };
     return map[toString.call(obj)];
 }
+
+
+
+ // "true"  => true
+  // "false" => false
+  // "null"  => null
+  // "42"    => 42
+  // "42.5"  => 42.5
+  // "08"    => "08"
+  // JSON    => parse if valid
+  // String  => self
+  function deserializeValue(value) {
+    var num
+    try {
+      return value ?
+        value == "true" ||
+        ( value == "false" ? false :
+          value == "null" ? null :
+          !/^0/.test(value) && !isNaN(num = Number(value)) ? num :
+          /^[\[\{]/.test(value) ? $.parseJSON(value) :
+          value )
+        : value
+    } catch(e) {
+      return value
+    }
+  }
+
 
 
 // firstUpperCase
@@ -469,65 +414,9 @@ function debounce(func, wait, immediate) {
   
   
   
- function mySystem() {
-        
- 		var system=uni.getSystemInfoSync();
- 		var statusBarHeight = system.statusBarHeight //状态栏高度
- 		var navigatorHeight=44;
- 		var isAndroid=false;
- 		
- 		if(system.system.toLowerCase().indexOf("ios")!=-1) {
- 		     navigatorHeight=44
- 			 isAndroid=false;
- 		 }else {
- 			isAndroid=true;
- 		    navigatorHeight=48
- 		 }
- 								
- 		var totalHeight=navigatorHeight+statusBarHeight
- 		
- 	
- 		//https://uniapp.dcloud.net.cn/tutorial/platform.html#preprocessor
- 		var   platform="";
- 			 //#ifdef APP-PLUS
- 			  platform = "APP-PLUS";///**App*/
- 			  //#endif
- 			  
- 			  //#ifdef APP-PLUS-NVUE || APP-NVUE
- 			  platform = "APP-PLUS-NVUE";///**App nvue*/     	//APP-PLUS-NVUE或APP-NVUE	 App nvue 页面
- 			  //#endif
- 			 
- 			  //#ifdef MP-WEIXIN
- 			  platform = "MP-WEIXIN";///**微信小程序*/
- 			  //#endif
- 			  
- 			  
- 		var navInfo={
- 			system:system,
- 			statusBarHeight:statusBarHeight,
- 			navigatorHeight:navigatorHeight,
- 			totalHeight:totalHeight,
- 			isAndroid:isAndroid,
- 			platform:platform,
- 			windowHeight:system.windowHeight,
- 			windowWidth:system.windowWidth,
- 			safeAreaBottom:system.safeAreaInsets.bottom||0,
- 			safeAreaInsetBottom:system.safeAreaInsets.bottom||0,
- 			
- 		 }	
- 		// localStorage&&localStorage.setItem("isAndroid", this.isAndroid)
- 		// localStorage&&localStorage.setItem("totalHeight", this.totalHeight)
- 		// localStorage&&localStorage.setItem("platform", platform)
- 		//console.log("mySystem ",navInfo,"platform",platform)
- 		return 	navInfo;				
- 	
- }
- 
- 
+ //------------is----------------------------------------------------------------------------
 
 
-  
-  
   /**
    * 判断是否为空
    */
@@ -761,6 +650,137 @@ function isBoolean(obj) {
  
 
  // -------正则 end------------------------------------------------------------------------------------- 
+   
+   
+   
+   
+  
+  //vue2 nextTick------------------------------------------------------------------
+  // 定义一个队列
+  const queue = []；
+  
+   function queueJob(job){
+      // 不存在队列中，则放入 
+       if(!queue.includes(job)){
+           queue.push(job)
+       }
+       
+       // 放入微队列中执行
+      nextTick2(() => {
+           let jobFn
+           // 取出队列中的第一个effect进行执行
+           while(jobFn = queue.shift()){
+              jobFn && jobFn()
+           }
+      })
+  }
+  
+   function nextTick2(fn){
+    return fn ? Promise.reslove.then(fn) : Promise.reslove()
+  }
+  
+  
+  
+  function nextTick (cb, ctx) {
+      var _resolve;
+        // 放入回调函数，等待DOM重新渲染完毕后执行
+      callbacks.push(function () {
+        if (cb) {
+          try {
+            // 修改执行上下文，指向当前页面实例
+            // 所以在我们没有使用箭头函数的前提下，this指向仍然正确
+            cb.call(ctx);
+          } catch (e) {
+            handleError(e, ctx, 'nextTick');
+          }
+        } else if (_resolve) {
+          _resolve(ctx);
+        }
+      });
+      if (!pending) {
+        pending = true;
+        timerFunc();
+      }
+      // $flow-disable-line
+      if (!cb && typeof Promise !== 'undefined') {
+        return new Promise(function (resolve) {
+          _resolve = resolve;
+        })
+      }
+      }
+  	// 原型链上，挂载此方法
+  	// Vue.prototype.$nextTick = function (fn) {
+  	//       //参数1：回调函数，参数二：页面实例执行上下文
+  	//       return nextTick(fn, this)
+  	//     };
+  	
+  	
+  	//timerFunc()
+  	//Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，
+  	//如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+  
+      //宏任务耗费的时间是大于微任务的，所以在浏览器支持的情况下，优先使用微任务。
+  	//如果浏览器不支持微任务，使用宏任务；但是，各种宏任务之间也有效率的不同，需要根据浏览器的支持情况，使用不同的宏任务。
+  	
+  	//
+  	const callbacks = []   // 回调队列
+  	let pending = false    // 异步锁
+  	
+  	// 执行队列中的每一个回调
+  	function flushCallbacks () {
+  	  pending = false     // 重置异步锁
+  	  // 防止出现nextTick中包含nextTick时出现问题，在执行回调函数队列前，提前复制备份并清空回调函数队列
+  	  const copies = callbacks.slice(0)
+  	  callbacks.length = 0
+  	  // 执行回调函数队列
+  	  for (let i = 0; i < copies.length; i++) {
+  	    copies[i]()
+  	  }
+  	}
+  
+  
+    let timerFunc;
+    /* 优先检测微任务(micro task) */
+    // 检测浏览器是否原生支持 Promise
+    if (typeof Promise !== 'undefined') {
+      const p = Promise.resolve()
+      timerFunc = () => {
+        p.then(flushCallbacks)
+      }
+      isUsingMicroTask = true
+    } 
+    // 以上都不支持的情况下，使用setTimeout
+    else {
+      timerFunc = () => {
+        setTimeout(flushCallbacks, 0)
+      }
+    }
+  
+  
+  
+  //vue3 nextTick-------------------------------------------------------------------------
+  const resolvedPromise =  Promise.resolve();
+  let currentFlushPromise = null;
+  function nextTick(fn) {
+      const p = currentFlushPromise || resolvedPromise;
+      return fn ? p.then(this ? fn.bind(this) : fn) : p;
+  }
+  // ————————————————
+  // 版权声明：本文为CSDN博主「haruhiSzmy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+  // 原文链接：https://blog.csdn.net/qq_42316310/article/details/125389053
+  
+  //------------------------------------------------------------------------------
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
   //https://github.com/view-design/ViewUIPlus/blob/master/src/utils/assist.js 
 // download file
